@@ -44,7 +44,7 @@ class Game {
 
   createField() {
     this.field = new Array(this.width);
-    for (let i = 0; i < this.heigh; i++) {
+    for (let i = 0; i < this.width; i++) {
       this.field[i] = new Array(this.heigh).fill(0);
     }
   }
