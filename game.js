@@ -23,6 +23,7 @@ class Game {
     this.gameState = 1;
     this.createField();
     this.render();
+    this.saveState();
   }
 
   stop() {
@@ -31,12 +32,14 @@ class Game {
 
   gameOver(player) {
     if (this.gameState !== 2) {
+      let message = 'Player ' + player + ' won';
+      console.log(message);
       this.gameState = 2;
-      console.log('Player ' + player + ' won!');
-      alert('Player ' + player + ' won!');
+      alert(message);
     } else {
       console.log('Game Over');
     }
+    this.saveState();
   }
 
   createField() {
@@ -56,6 +59,7 @@ class Game {
     } else {
       this.playerTurn = 1;
     }
+    this.saveState();
   }
 
   move(x, y, player) {
