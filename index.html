@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+    <script src="game.js"></script>
+
+    <style>
+        #gameBoard {
+            border: black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameBoard" width=500 height=500></canvas>
+
+    <div>
+        <button id="startButton">Старт</button>
+        <button id="resetButton">Заного</button><br>
+        Ширина: <input type="number" id="widthInput" value="5"><br>
+        Высота: <input type="nubmer" id="heighInput" value="5"><br>
+        Размер ряда для победы: <input type="nubmer" id="winConditionInput" value="3"><br>
+    </div>
+    <script>
+      let game = new Game();
+      game.restoreState();
+
+      function start() {
+        game.stop();
+        let width = Number(document.getElementById('widthInput').value);
+        let heigh = Number(document.getElementById('heighInput').value);
+        let winCondition = Number(document.getElementById('winConditionInput').value);
+
+        game.width = width || 3;
+        game.heigh = heigh || 3;
+        game.winCondition = winCondition || 3;
+
+        game.start();
+      }
+
+      document.getElementById('startButton').addEventListener('click', start);
+      document.getElementById('resetButton').addEventListener('click', start);
+    </script>
+</body>
+</html>
