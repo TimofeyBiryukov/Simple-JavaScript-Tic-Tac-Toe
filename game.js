@@ -97,8 +97,12 @@ class Game {
         if (cell === 0) emptyCoord.push([x, y]);
       });
     });
-    let decision = Math.round(Math.random() * emptyCoord.length);
-    this.move(emptyCoord[decision][0], emptyCoord[decision][1], 2);
+    if (emptyCoord.length > 0) {
+      let decision = Math.round(Math.random() * (emptyCoord.length - 1));
+      if (decision >= 0) {
+        this.move(emptyCoord[decision][0], emptyCoord[decision][1], 2);
+      }
+    }
   }
 
   render() {
@@ -204,7 +208,16 @@ class Game {
   }
 
   restoreState() {
-    let restoredState = JSON.parse(localStorage['game']);
+    let lcGame = localStorage['game'];
+    let restoredState;
+
+    if (lcGame) {
+      restoredState = JSON.parse(lcGame);
+    }
+
+    if (!restoredState) {
+      return;
+    }
 
     this.width = restoredState.width;
     this.heigh = restoredState.heigh;
