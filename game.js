@@ -11,6 +11,7 @@ class Game {
     this.gridSize = 5;
 
     this.playerTurn = 1;
+    this.score = {'1': 0, '2': 0};
 
     document.getElementById('gameBoard')
       .addEventListener('click', e => this.click(e));
@@ -35,6 +36,7 @@ class Game {
       let message = 'Player ' + player + ' won';
       console.log(message);
       this.gameState = 2;
+      this.score[player]++;
       alert(message);
     } else {
       console.log('Game Over');
