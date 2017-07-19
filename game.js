@@ -30,6 +30,7 @@ class Game {
 
     if (this.bot && this.playerTurn === 2) {
       this.botTurn();
+      this.playerTurn = 1;
     }
   }
 
