@@ -80,7 +80,8 @@ class Game {
     let canvas = document.getElementById('gameBoard');
     let ctx = canvas.getContext('2d');
 
-    ctx.clearRect(0, 0, canvas.width, canvas.heigh);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
     ctx.fillStyle = 'black';
 
     this.field.forEach((row, x) => {
