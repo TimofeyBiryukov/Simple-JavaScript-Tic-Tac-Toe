@@ -40,7 +40,7 @@ class Game {
 
   gameOver(player) {
     if (this.gameState !== 2) {
-      let message = 'Иголк ' + player + ' победил';
+      let message = 'Игрок ' + player + ' победил';
       console.log(message);
       this.gameState = 2;
       this.score[player]++;
