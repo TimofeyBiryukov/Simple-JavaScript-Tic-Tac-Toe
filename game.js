@@ -103,12 +103,12 @@ class Game {
   }
 
   checkWinningCondition(player) {
-    let winCount = 0;
+    let lineLength = 0;
 
     let checkWinCount = () => {
-      winCount++;
+      lineLength++;
 
-      if (winCount >= this.winCondition) {
+      if (lineLength >= this.winCondition) {
         this.gameOver(player);
         return true;
       }
@@ -143,7 +143,7 @@ class Game {
           checkWinCount();
           let result = checkLinear(x, y, ci);
           if (!result) {
-            winCount = 1;
+            lineLength = 1;
           }
         }
       });
@@ -168,7 +168,7 @@ class Game {
     this.field.forEach((row, x) => {
       row.forEach((cell, y) => {
         if (cell === player) {
-          winCount = 0;
+          lineLength = 0;
           checkWinCount();
           checkCircular(x, y);
         }
