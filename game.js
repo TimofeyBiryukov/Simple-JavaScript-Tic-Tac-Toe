@@ -13,6 +13,8 @@ class Game {
     this.playerTurn = 1;
     this.score = {'1': 0, '2': 0};
 
+    this.bot = true;
+
     document.getElementById('gameBoard')
       .addEventListener('click', e => this.click(e));
   }
@@ -25,6 +27,10 @@ class Game {
     this.createField();
     this.render();
     this.saveState();
+
+    if (this.bot && this.playerTurn === 2) {
+      this.botTurn();
+    }
   }
 
   stop() {
@@ -33,7 +39,7 @@ class Game {
 
   gameOver(player) {
     if (this.gameState !== 2) {
-      let message = 'Player ' + player + ' won';
+      let message = 'Иголк ' + player + ' победил';
       console.log(message);
       this.gameState = 2;
       this.score[player]++;
@@ -52,7 +58,7 @@ class Game {
   }
 
   click(e) {
-    // TODO: not precise
+    // TODO: not precise enough
     let x = Math.round(e.x / (this.tileSize - this.gridSize)) - 1;
     let y = Math.round(e.y / (this.tileSize - this.gridSize)) - 1;
     this.move(x, y, this.playerTurn);
@@ -76,6 +82,22 @@ class Game {
     this.render();
     this.saveState();
     this.checkWinningCondition(player);
+
+    if (this.bot && player === 1) {
+      this.playerTurn = 2;
+      this.botTurn();
+    }
+  }
+
+  botTurn() {
+    let emptyCoord = [];
+    this.field.forEach((row, x) => {
+      row.forEach((cell, y) => {
+        if (cell === 0) emptyCoord.push([x, y]);
+      });
+    });
+    let decision = Math.round(Math.random() * emptyCoord.length);
+    this.move(emptyCoord[decision][0], emptyCoord[decision][1], 2);
   }
 
   render() {

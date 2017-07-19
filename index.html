@@ -20,6 +20,7 @@
         Ширина: <input type="number" id="widthInput" value="5"><br>
         Высота: <input type="number" id="heighInput" value="5"><br>
         Размер ряда для победы: <input type="number" id="winConditionInput" value="3"><br>
+        Бот: <input type="checkbox" id="botInput" checked>
     </div>
     <script>
       let game = new Game();
@@ -30,10 +31,12 @@
         let width = Number(document.getElementById('widthInput').value);
         let heigh = Number(document.getElementById('heighInput').value);
         let winCondition = Number(document.getElementById('winConditionInput').value);
+        let bot = document.getElementById('botInput').checked;
 
-        game.width = width || 3;
-        game.heigh = heigh || 3;
-        game.winCondition = winCondition || 3;
+        game.width = width;
+        game.heigh = heigh;
+        game.winCondition = winCondition;
+        game.bot = bot;
 
         game.start();
       }
