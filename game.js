@@ -190,6 +190,7 @@ class Game {
     this.tileSize = restoredState.tileSize;
     this.gridSize = restoredState.gridSize;
     this.playerTurn = restoredState.playerTurn;
+    this.score = restoredState.score;
     this.field = restoredState.field;
 
     this.render();
@@ -200,7 +201,7 @@ class Game {
     return this.field[x][y];
   }
 
-  setFieldCell(x, y, value = null) {
+  setFieldCell(x, y, value = 0) {
     this.field[x][y] = value;
   }
 }
